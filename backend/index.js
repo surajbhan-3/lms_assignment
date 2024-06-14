@@ -1,5 +1,9 @@
 const express = require("express")
-const {sequelize} = require("./config/db")
+const {sequelize} = require("./config/db");
+const userRouter = require("./routes/user.routes");
+const { authorize, AuthenticationMiddleware } = require("./middleware/Auth");
+const courseRouter = require("./routes/course.routes");
+const progressRouter = require("./routes/progress.routes");
 require("dotenv").config();
 
 const PORT = process.env.PORT || 3000
@@ -26,6 +30,10 @@ app.get("/", async(req,res)=>{
         )
     }
 })
+
+app.use("/api", userRouter)
+app.use("/api",courseRouter)
+app.use("/api/progress", progressRouter)
 
 
 app.listen(PORT, async()=>{
