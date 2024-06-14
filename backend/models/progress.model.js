@@ -29,7 +29,7 @@ UserCourse.hasMany(ProgresModel, { foreignKey: 'userCourseId' });
 
 
 sequelize.sync()
-  .then(() => {
+    .then(() => {
     console.log("Database & tables created!");
 })
 .catch(error => {
